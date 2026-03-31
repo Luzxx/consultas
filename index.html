@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consulta Veraz Online — Informe Crediticio, Score y Situación en Banco Central</title>
+<meta name="description" content="Consultá tu situación en Veraz, Banco Central y score crediticio. Recibís tu informe completo con puntaje y asesoramiento personalizado por email. Solo $15.000.">
+<meta name="keywords" content="informe veraz, veraz consultar, banco central, situacion crediticia, score crediticio, consulta veraz online, veraz argentina, bcra, deudores banco central, puntaje crediticio, libre de deuda, informe crediticio, veraz precio, como salir de veraz">
+<meta name="robots" content="index, follow">
+<meta name="geo.region" content="AR">
+<meta property="og:title" content="Consulta Veraz Online — Informe Crediticio y Score">
+<meta property="og:description" content="Conocé tu situación en Veraz y Banco Central. Informe con puntaje crediticio y asesoramiento personalizado por email. Solo $15.000.">
+<meta property="og:locale" content="es_AR">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Service","name":"Consulta Veraz Online","offers":{"@type":"Offer","price":"15000","priceCurrency":"ARS"},"areaServed":{"@type":"Country","name":"Argentina"}}
+</script>
+
+<!-- SDK Mercado Pago -->
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;color:#1a1a1a;background:#f5f5f3;min-height:100vh}
+.page{max-width:620px;margin:0 auto;background:#fff;min-height:100vh;box-shadow:0 0 40px rgba(0,0,0,0.08)}
+.hero{background:#0C447C;padding:3rem 1.75rem 2.5rem;text-align:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:5px 16px;margin-bottom:1.25rem}
+.hero-eyebrow-dot{width:7px;height:7px;border-radius:50%;background:#5DCAA5;flex-shrink:0}
+.hero-eyebrow span{font-size:12px;color:rgba(255,255,255,0.9);letter-spacing:.5px;font-weight:500}
+.hero h1{font-family:'Playfair Display',serif;color:#fff;font-size:2.2rem;line-height:1.2;margin-bottom:.85rem;font-weight:400}
+.hero-sub{color:rgba(255,255,255,0.75);font-size:14px;line-height:1.7;max-width:440px;margin:0 auto 2rem}
+.price-box{display:inline-flex;align-items:center;gap:16px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:14px;padding:1rem 1.75rem;margin-bottom:1.75rem}
+.price-num{font-family:'Playfair Display',serif;font-size:2rem;color:#fff;font-weight:400}
+.price-info-title{font-size:13px;font-weight:500;color:#fff;text-align:left}
+.price-info-sub{font-size:12px;color:rgba(255,255,255,0.6);text-align:left}
+.hero-features{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center}
+.hf{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.85)}
+.hf-check{width:16px;height:16px;border-radius:50%;background:#1D9E75;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hf-check svg{width:9px;height:9px}
+.steps-bar{display:flex;align-items:center;justify-content:center;padding:1.25rem 1.5rem;border-bottom:1px solid #ebebeb;background:#fff}
+.step{display:flex;align-items:center;gap:7px;font-size:12px;color:#aaa;font-weight:500}
+.step.active{color:#185FA5}
+.step-circle{width:22px;height:22px;border-radius:50%;border:1.5px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0}
+.step-line{width:36px;height:1px;background:#ebebeb;margin:0 6px}
+.form-wrap{padding:1.75rem 1.5rem 2.5rem}
+.progress-bar{height:3px;background:#ebebeb;border-radius:4px;margin-bottom:1.5rem;overflow:hidden}
+.progress-fill{height:100%;background:#185FA5;border-radius:4px;transition:width .4s ease;width:0%}
+.card{background:#fff;border:1px solid #ebebeb;border-radius:14px;padding:1.25rem;margin-bottom:.85rem}
+.card-head{display:flex;align-items:center;gap:10px;margin-bottom:1rem;padding-bottom:.85rem;border-bottom:1px solid #f0f0f0}
+.card-icon{width:34px;height:34px;border-radius:9px;background:#E6F1FB;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.card-icon svg{width:17px;height:17px;color:#185FA5}
+.card-head-title{font-size:14px;font-weight:500;color:#1a1a1a}
+.card-head-sub{font-size:12px;color:#888;margin-top:1px}
+.field{margin-bottom:.85rem}
+.field label{display:block;font-size:12px;font-weight:500;color:#555;margin-bottom:5px;letter-spacing:.2px}
+.req{color:#E24B4A;margin-left:2px}
+.field input,.field textarea{width:100%;font-family:'Inter',sans-serif;font-size:14px;padding:10px 13px;border:1px solid #ddd;border-radius:8px;background:#fafafa;color:#1a1a1a;outline:none;transition:.15s}
+.field input:focus,.field textarea:focus{border-color:#378ADD;background:#fff;box-shadow:0 0 0 3px rgba(55,138,221,0.1)}
+.field textarea{resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.radio-group{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.radio-opt{border:1px solid #ddd;border-radius:9px;padding:.75rem 1rem;cursor:pointer;display:flex;align-items:center;gap:9px;font-size:13px;transition:.15s;color:#333;background:#fafafa;user-select:none}
+.radio-opt:hover{border-color:#378ADD;background:#f0f7ff}
+.radio-opt.selected{border-color:#185FA5;background:#E6F1FB;color:#185FA5}
+.rdot{width:15px;height:15px;border-radius:50%;border:1.5px solid currentColor;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rdot-inner{width:7px;height:7px;border-radius:50%;background:currentColor;display:none}
+.radio-opt.selected .rdot-inner{display:block}
+.upload-wrap{border:1.5px dashed #ccc;border-radius:9px;padding:1.25rem;text-align:center;cursor:pointer;transition:.15s;background:#fafafa;margin-top:.6rem}
+.upload-wrap:hover{border-color:#378ADD;background:#f0f7ff}
+.upload-wrap svg{width:26px;height:26px;color:#999;margin-bottom:.4rem;display:block;margin-left:auto;margin-right:auto}
+.upload-label{font-size:13px;color:#777}
+.upload-label strong{color:#185FA5}
+.file-ok{font-size:12px;color:#1D9E75;margin-top:.4rem}
+.info-note{background:#E6F1FB;border:1px solid #B5D4F4;border-radius:8px;padding:.85rem 1rem;font-size:12px;color:#185FA5;line-height:1.5;margin-top:.6rem}
+.err-msg{font-size:13px;color:#A32D2D;margin-bottom:.75rem;display:none;padding:.7rem 1rem;background:#FCEBEB;border-radius:8px;border:1px solid #F7C1C1}
+.pay-btn{width:100%;padding:15px;background:#009ee3;color:#fff;border:none;border-radius:10px;font-family:'Inter',sans-serif;font-size:15px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:.2s;opacity:.4;pointer-events:none}
+.pay-btn.enabled{opacity:1;pointer-events:auto}
+.pay-btn.enabled:hover{background:#0081c4}
+.pay-btn.enabled:active{transform:scale(0.99)}
+.mp-logo{height:20px;width:auto;filter:brightness(0) invert(1)}
+#wallet_container{margin-top:14px;display:none}
+.lock-note{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:#999;margin-top:.85rem}
+.lock-note svg{width:13px;height:13px;flex-shrink:0}
+.status-msg{font-size:13px;color:#185FA5;margin-top:.75rem;min-height:1.2em;text-align:center}
+.seo-section{padding:2rem 1.75rem;border-top:1px solid #f0f0f0;background:#fafafa}
+.seo-section h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:400;color:#1a1a1a;margin-bottom:.75rem}
+.seo-section p{font-size:13px;color:#666;line-height:1.75;margin-bottom:.75rem}
+.seo-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+.seo-tag{font-size:11px;background:#E6F1FB;color:#185FA5;padding:4px 10px;border-radius:20px;font-weight:500}
+footer{text-align:center;padding:1.25rem;font-size:11px;color:#bbb;border-top:1px solid #f0f0f0}
+@media(max-width:480px){
+  .hero h1{font-size:1.7rem}
+  .price-box{flex-direction:column;gap:8px;text-align:center}
+  .row2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="hero">
+  <div class="hero-eyebrow"><div class="hero-eyebrow-dot"></div><span>Informe crediticio profesional</span></div>
+  <h1>Consultá tu situación<br>en Veraz</h1>
+  <p class="hero-sub">Conocé tu score crediticio, tu situación en el Banco Central y si tenés deudas registradas. Recibís el informe completo con asesoramiento personalizado por email.</p>
+  <div class="price-box">
+    <div class="price-num">$15.000</div>
+    <div>
+      <div class="price-info-title">Informe Veraz completo</div>
+      <div class="price-info-sub">Score + situación BCRA + asesoramiento</div>
+    </div>
+  </div>
+  <div class="hero-features">
+    <div class="hf"><div class="hf-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Informe oficial Veraz</div>
+    <div class="hf"><div class="hf-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Score crediticio</div>
+    <div class="hf"><div class="hf-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Situación Banco Central</div>
+    <div class="hf"><div class="hf-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Asesoramiento incluido</div>
+  </div>
+</div>
+
+<div class="steps-bar">
+  <div class="step active" id="s1"><div class="step-circle">1</div>Tus datos</div>
+  <div class="step-line"></div>
+  <div class="step" id="s2"><div class="step-circle">2</div>Deuda</div>
+  <div class="step-line"></div>
+  <div class="step" id="s3"><div class="step-circle">3</div>Pago</div>
+</div>
+
+<div class="form-wrap">
+  <div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
+
+  <div class="card">
+    <div class="card-head">
+      <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+      <div><div class="card-head-title">Datos personales</div><div class="card-head-sub">Todos los campos son obligatorios</div></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label>Nombre<span class="req">*</span></label><input type="text" id="nombre" placeholder="Juan" oninput="check()"></div>
+      <div class="field"><label>Apellido<span class="req">*</span></label><input type="text" id="apellido" placeholder="García" oninput="check()"></div>
+    </div>
+    <div class="field"><label>DNI<span class="req">*</span></label><input type="text" id="dni" placeholder="12.345.678" maxlength="10" oninput="check()"></div>
+    <div class="field"><label>Email<span class="req">*</span></label><input type="email" id="email" placeholder="juan@email.com" oninput="check()"></div>
+    <div class="field"><label>Teléfono<span class="req">*</span></label><input type="tel" id="telefono" placeholder="+54 9 11 1234-5678" oninput="check()"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9S3 16.97 3 12 7.03 3 12 3s9 4.03 9 9z"/></svg></div>
+      <div><div class="card-head-title">Estado de deuda</div><div class="card-head-sub">Seleccioná tu situación actual</div></div>
+    </div>
+    <div class="field">
+      <label>¿Tu deuda está cancelada?<span class="req">*</span></label>
+      <div class="radio-group">
+        <div class="radio-opt" id="opt-si" onclick="selectDeuda('si')"><div class="rdot"><div class="rdot-inner"></div></div>Sí, cancelada</div>
+        <div class="radio-opt" id="opt-no" onclick="selectDeuda('no')"><div class="rdot"><div class="rdot-inner"></div></div>No / No sé</div>
+      </div>
+    </div>
+    <div id="upload-section" style="display:none">
+      <div class="info-note">Podés adjuntar el comprobante de libre de deuda para agilizar tu consulta.</div>
+      <div class="upload-wrap" onclick="document.getElementById('file-inp').click()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <div class="upload-label"><strong>Subir comprobante</strong><br>PDF, JPG o PNG</div>
+        <div class="file-ok" id="fname"></div>
+      </div>
+      <input type="file" id="file-inp" accept=".pdf,.jpg,.jpeg,.png" style="display:none" onchange="handleFile(this)">
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+      <div><div class="card-head-title">Consulta adicional</div><div class="card-head-sub">Opcional</div></div>
+    </div>
+    <div class="field">
+      <label>¿Algo específico que querés saber?</label>
+      <textarea id="consulta" rows="3" placeholder="Ej: Quiero saber si puedo sacar un crédito, si salgo en Veraz..."></textarea>
+    </div>
+  </div>
+
+  <div class="err-msg" id="err">Por favor completá todos los campos obligatorios y seleccioná el estado de deuda.</div>
+
+  <button class="pay-btn" id="pay-btn" onclick="iniciarPago()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;flex-shrink:0"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+    <span id="btn-txt">Pagar con</span>
+    <img src="https://http2.mlstatic.com/frontend-assets/mp-web-navigation/ui-navigation/5.22.3/mercadopago/logo__large@2x.png" class="mp-logo" id="mp-logo-img" alt="MercadoPago">
+  </button>
+
+  <!-- Wallet Brick de MP se renderiza acá -->
+  <div id="wallet_container"></div>
+
+  <div class="status-msg" id="status-msg"></div>
+
+  <div class="lock-note">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    Pago 100% seguro con MercadoPago
+  </div>
+</div>
+
+<div class="seo-section">
+  <h2>¿Qué incluye tu informe Veraz?</h2>
+  <p>El informe Veraz es el registro crediticio más completo de Argentina. Te permite conocer tu score, ver si tenés deudas registradas en el Banco Central (BCRA) y saber si podés acceder a créditos, préstamos o financiamiento bancario.</p>
+  <p>Nuestro servicio incluye la consulta oficial, tu puntaje crediticio actualizado y asesoramiento personalizado: te explicamos qué significa tu situación crediticia y qué podés hacer para mejorarla o resolver cualquier inconveniente con entidades bancarias.</p>
+  <div class="seo-tags">
+    <span class="seo-tag">Informe Veraz</span>
+    <span class="seo-tag">Veraz consultar</span>
+    <span class="seo-tag">Banco Central</span>
+    <span class="seo-tag">BCRA deudores</span>
+    <span class="seo-tag">Score crediticio</span>
+    <span class="seo-tag">Situación crediticia</span>
+    <span class="seo-tag">Libre de deuda</span>
+    <span class="seo-tag">Puntaje Veraz</span>
+    <span class="seo-tag">Crédito personal</span>
+  </div>
+</div>
+
+<footer>© 2025 Consulta Veraz — Servicio profesional de informes crediticios en Argentina</footer>
+</div>
+
+<script>
+// ⚠️ REEMPLAZÁ ESTOS DOS VALORES antes de publicar
+var PUBLIC_KEY_MP = 'TU_PUBLIC_KEY_AQUI';       // APP_USR-xxxx (pública)
+var WEBAPP_URL    = 'TU_URL_APPS_SCRIPT_AQUI';  // https://script.google.com/macros/s/xxx/exec
+
+var PRECIO = 15000;
+var deuda  = null;
+var walletController = null;
+
+var mp = new MercadoPago(PUBLIC_KEY_MP, { locale: 'es-AR' });
+var bricksBuilder = mp.bricks();
+
+function selectDeuda(v){
+  deuda = v;
+  document.getElementById('opt-si').classList.toggle('selected', v==='si');
+  document.getElementById('opt-no').classList.toggle('selected', v==='no');
+  document.getElementById('upload-section').style.display = v==='si' ? 'block' : 'none';
+  check();
+}
+
+function handleFile(inp){
+  if(inp.files.length){ document.getElementById('fname').textContent = '✓ ' + inp.files[0].name; }
+}
+
+function getVal(id){ return document.getElementById(id).value.trim(); }
+
+function check(){
+  var n=getVal('nombre'), a=getVal('apellido'), d=getVal('dni'), e=getVal('email'), t=getVal('telefono');
+  var ok = n && a && d && e && t && e.indexOf('@')>-1 && deuda;
+  document.getElementById('pay-btn').classList.toggle('enabled', !!ok);
+  var filled = [n,a,d,e,t].filter(Boolean).length;
+  var pct = Math.min(Math.round((filled/5)*70 + (deuda?30:0)), 100);
+  document.getElementById('prog').style.width = pct + '%';
+  if(filled>=1) document.getElementById('s1').classList.add('active');
+  if(deuda) document.getElementById('s2').classList.add('active');
+  if(ok) document.getElementById('s3').classList.add('active');
+}
+
+async function iniciarPago(){
+  var btn = document.getElementById('pay-btn');
+  var err = document.getElementById('err');
+  var statusMsg = document.getElementById('status-msg');
+  err.style.display = 'none';
+
+  btn.classList.remove('enabled');
+  document.getElementById('btn-txt').textContent = 'Preparando pago...';
+  document.getElementById('mp-logo-img').style.display = 'none';
+  statusMsg.textContent = 'Creando tu preferencia de pago...';
+
+  try {
+    var payload = {
+      nombre:       getVal('nombre'),
+      apellido:     getVal('apellido'),
+      dni:          getVal('dni'),
+      email:        getVal('email'),
+      telefono:     getVal('telefono'),
+      estado_deuda: deuda === 'si' ? 'Si, cancelada' : 'No / No se',
+      consulta:     getVal('consulta'),
+      monto:        PRECIO
+    };
+
+    var resp = await fetch(WEBAPP_URL + '?route=create_bricks', {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+
+    var text = await resp.text();
+    if (text.trim().startsWith('<')) throw new Error('Error en el servidor. Verificá la URL del Apps Script.');
+    var data = JSON.parse(text);
+    if (!data.ok || !data.preferenceId) throw new Error(data.error || 'No se pudo crear el pago');
+
+    // Renderizar Wallet Brick
+    try { if(walletController) await walletController.unmount(); } catch(_){}
+
+    document.getElementById('wallet_container').style.display = 'block';
+    walletController = await bricksBuilder.create('wallet', 'wallet_container', {
+      initialization: { preferenceId: data.preferenceId },
+      customization: {
+        texts: { valueProp: 'smart_option' },
+        checkout: { theme: { elementsColor: '#0C447C' } }
+      },
+      callbacks: {
+        onReady: function(){
+          statusMsg.textContent = 'Listo. Hacé click en el botón azul de MercadoPago para pagar.';
+          statusMsg.style.color = '#1D9E75';
+          document.getElementById('btn-txt').textContent = 'Pagar con';
+          document.getElementById('mp-logo-img').style.display = '';
+          btn.classList.add('enabled');
+        },
+        onError: function(e){
+          console.error(e);
+          statusMsg.textContent = 'Error al cargar el botón de pago. Intentá de nuevo.';
+          statusMsg.style.color = '#A32D2D';
+          document.getElementById('btn-txt').textContent = 'Pagar con';
+          document.getElementById('mp-logo-img').style.display = '';
+          btn.classList.add('enabled');
+        }
+      }
+    });
+
+  } catch(e){
+    err.textContent = e.message || 'Error al procesar el pago. Intentá de nuevo.';
+    err.style.display = 'block';
+    err.scrollIntoView({ behavior:'smooth', block:'center' });
+    statusMsg.textContent = '';
+    document.getElementById('btn-txt').textContent = 'Pagar con';
+    document.getElementById('mp-logo-img').style.display = '';
+    btn.classList.add('enabled');
+  }
+}
+</script>
+</body>
+</html>
